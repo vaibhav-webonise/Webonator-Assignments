@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanInputFromUser = new Scanner(System.in);
-
         do {
             System.out.print("\n 1.Traverse ArrayList  2.Traverse HashMap  3.Remove duplicates in string");
             System.out.print("\n Enter your choice::");
