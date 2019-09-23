@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanInputFromUser = new Scanner(System.in);
-        String choiceContinue;
+
         do {
             System.out.print("\n 1.Traverse ArrayList  2.Traverse HashMap  3.Remove duplicates in string");
             System.out.print("\n Enter your choice::");
-            int userInputChoice = scanInputFromUser.nextInt();
-            switch (userInputChoice) {
+            switch (scanInputFromUser.nextInt()) {
                 case 1:
                     ArrayListDemo arrayListDemo = new ArrayListDemo();
                     arrayListDemo.traverseArrayList();
@@ -20,7 +19,7 @@ public class Main {
                     hashMapDemo.traverseHashMap();
                     break;
                 case 3:
-                    StringDemo stringDemo=new StringDemo();
+                    StringDemo stringDemo = new StringDemo();
                     stringDemo.removeDuplicatesInString();
                     break;
                 default:
@@ -28,7 +27,6 @@ public class Main {
                     break;
             }
             System.out.print("\n\n Do you want to continue with the application::");
-            choiceContinue = scanInputFromUser.next();
-        } while (choiceContinue.equals("yes"));
+        } while (scanInputFromUser.next().equals("yes"));
     }
 }
