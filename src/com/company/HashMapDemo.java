@@ -1,34 +1,28 @@
 package com.company;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
-public class HashMapDemo {
-    Scanner scanInputFromUser = new Scanner(System.in);
-    HashMap<String, Integer> hashMap = new HashMap<>();
-    int noOfSubjects;
+class HashMapDemo {
+    private Scanner scanInputFromUser = new Scanner(System.in);
+    private HashMap<String, Integer> hashMap = new HashMap<>();
 
-    public void traverseHashMap() {
-        System.out.println("\n Exam results...");
-        System.out.print("\n Enter the number of subjects you have::");
-        noOfSubjects = scanInputFromUser.nextInt();
-        getSubjectsAndMarks();
-        Iterator iterator = hashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) iterator.next();
-            System.out.print("    " + pair.getKey() + " : " + pair.getValue());
+    void traverseHashMap() {
+        this.getSubjectsAndMarks();
+        for (Map.Entry<String, Integer> subjectMarksMap : hashMap.entrySet()) {
+            System.out.print("    " + subjectMarksMap.getKey() + " : " + subjectMarksMap.getValue());
         }
     }
 
-    void getSubjectsAndMarks() {
+    private void getSubjectsAndMarks() {
+        System.out.println("\n Exam results...");
+        System.out.print("\n Enter the number of subjects you have::");
+        int noOfSubjects = scanInputFromUser.nextInt();
         System.out.println(" Enter the subject name and marks::");
         for (int i = 0; i < noOfSubjects; i++) {
             System.out.print("    ");
-            String subjectName = scanInputFromUser.next();
-            int subjectMarks = scanInputFromUser.nextInt();
-            hashMap.put(subjectName, subjectMarks);
+            hashMap.put(scanInputFromUser.next(), scanInputFromUser.nextInt());
         }
     }
 }
