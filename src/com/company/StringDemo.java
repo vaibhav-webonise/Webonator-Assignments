@@ -1,19 +1,14 @@
 package com.company;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
-public class StringDemo {
-    void removeDuplicatesInString(){
-        String inputString="I came I Saw I conquered I went";
-        StringBuilder outputString = new StringBuilder();
-        Set<Character> linkedHashSet = new LinkedHashSet<>();
-        for (int i = 0; i < inputString.length(); i++) {
-            linkedHashSet.add(inputString.charAt(i));
+class StringDemo {
+    void removeDuplicatesInString() {
+        String inputString = "I came I Saw I conquered I went";
+
+        LinkedHashSet<String> distinctStrings = new LinkedHashSet<>(Arrays.asList(inputString.split(" ")));
+        for (String outputString : distinctStrings) {
+            System.out.print(" " + outputString);
         }
-        for (Character c : linkedHashSet) {
-            outputString.append(c);
-        }
-        System.out.println("String after removing duplicates::"+outputString);
     }
 }
