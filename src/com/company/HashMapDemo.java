@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 class HashMapDemo {
     private Scanner scanInputFromUser = new Scanner(System.in);
-    private HashMap<String, Integer> hashMap = new HashMap<>();
+    private HashMap<String, Integer> subjectAndMarks = new HashMap<>();
 
     void traverseHashMap() {
         this.getSubjectsAndMarks();
-        for (Map.Entry<String, Integer> subjectMarksMap : hashMap.entrySet()) {
+        for (Map.Entry<String, Integer> subjectMarksMap : subjectAndMarks.entrySet()) {
             System.out.print("    " + subjectMarksMap.getKey() + " : " + subjectMarksMap.getValue());
         }
     }
@@ -22,7 +22,7 @@ class HashMapDemo {
         System.out.println(" Enter the subject name and marks::");
         for (int i = 0; i < noOfSubjects; i++) {
             System.out.print("    ");
-            hashMap.put(scanInputFromUser.next(), scanInputFromUser.nextInt());
+            subjectAndMarks.put(scanInputFromUser.next(), scanInputFromUser.nextInt());
         }
     }
 }
