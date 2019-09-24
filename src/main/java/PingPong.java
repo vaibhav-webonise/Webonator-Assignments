@@ -1,15 +1,10 @@
 
-import java.util.Scanner;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+
 class PingPong {
-
-    Scanner scanInputFromUser=new Scanner(System.in);
-
-     public static void main(String[] args){
-         Logger log=Logger.getLogger(PingPong.class.getName());
-         Scanner scanInputFromUser = new Scanner(System.in);
-         log.info(" Hey what is your name?");
-        String name=scanInputFromUser.next();
-        log.info(" Wow "+ name+ " is a good name...");
+    ArrayList<String> runPingPong(){
+        ArrayList<String> result = new ArrayList<String>();
+        result.add("VAIBHAV");
+        return result;
     }
 }
