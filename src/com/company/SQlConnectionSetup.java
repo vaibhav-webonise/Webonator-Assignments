@@ -8,12 +8,11 @@ import java.sql.SQLException;
 class SQlConnectionSetup {
     Connection connection;
     PreparedStatement preparedStatement;
-    void establishConnection() {
+    void establishConnection() throws ClassNotFoundException {
         final String url = "jdbc:mysql://localhost:3306/employee_database?autoReconnect=true&useSSL=false";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, "root", "webonise");
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
