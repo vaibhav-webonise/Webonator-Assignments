@@ -5,9 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+
 @Entity
 public class Student {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -20,6 +21,11 @@ public class Student {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", studentName=" + studentName + ", course=" + course + "]";
 	}
 
 	public String getStudentName() {
@@ -38,8 +44,4 @@ public class Student {
 		this.course = course;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", studentName=" + studentName + ", course=" + course + "]";
-	}
 }
