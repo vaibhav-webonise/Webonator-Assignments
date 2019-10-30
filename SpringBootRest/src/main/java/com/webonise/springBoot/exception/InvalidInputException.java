@@ -1,5 +1,5 @@
 package com.webonise.springBoot.exception;
 
-public class StudentNotFoundException extends RuntimeException {
+public class InvalidInputException extends NumberFormatException{
 	private static final long serialVersionUID = 1L;
 }

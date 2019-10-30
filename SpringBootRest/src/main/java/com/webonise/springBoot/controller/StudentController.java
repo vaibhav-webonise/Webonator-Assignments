@@ -12,50 +12,54 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.webonise.springBoot.dao.StudentRepository;
-import com.webonise.springBoot.exception.StudentNotFoundException;
+import com.webonise.springBoot.Service.StudentService;
+import com.webonise.springBoot.exception.InvalidInputException;
 import com.webonise.springBoot.model.Student;
 
 @RestController
 public class StudentController {
 
 	@Autowired
-	StudentRepository studentRepository;
+	StudentService studentService;
 	Logger log = (Logger) LoggerFactory.getLogger(StudentController.class);
 
-	@RequestMapping(path = "/students")
-	public List<Student> home() {
-		return studentRepository.findAll();
+	@RequestMapping(path = "/getStudents")
+	public List<Student> findAllStudents() {
+		return studentService.getAllStudents();
 	}
 
-	@RequestMapping("/student/{studentId}")
-	public Optional<Student> getStudent(@PathVariable("studentId") int studentId) {
-		if (!studentRepository.existsById(studentId))
-			throw new StudentNotFoundException();
-		return studentRepository.findById(studentId);
+	@RequestMapping("/getStudent/{studentId}")
+	public Optional<Student> findStudent(@PathVariable("studentId") String studentId) {
+		try {
+			return studentService.getStudent(Long.parseLong(studentId));
+		} catch (NumberFormatException numberFormatException) {
+			log.error("Exception occured:" + numberFormatException);
+			throw new InvalidInputException();
+		}
 	}
 
-	@PostMapping(path = "/student")
+	@DeleteMapping(path = "/deleteStudents")
+	public Boolean removeAllStudents() {
+		return studentService.deleteAllStudents();
+	}
+
+	@DeleteMapping(path = "/deleteStudent/{studentId}")
+	public Boolean removeStudent(@PathVariable String studentId) {
+		try {
+			return studentService.deleteStudent(Long.parseLong(studentId));
+		} catch (NumberFormatException numberFormatException) {
+			log.error("Exception occured:" + numberFormatException);
+			throw new InvalidInputException();
+		}
+	}
+
+	@PostMapping(path = "/addStudent")
 	public Boolean addStudent(@RequestBody Student student) {
-		studentRepository.save(student);
-		log.info("New student is added :" + student.toString());
-		return true;
+		return studentService.addStudent(student);
 	}
 
-	@DeleteMapping(path = "/student/{studentId}")
-	public Boolean deleteStudent(@PathVariable int studentId) {
-		if (!studentRepository.existsById(studentId))
-			throw new StudentNotFoundException();
-		Student student = studentRepository.getOne(studentId);
-		studentRepository.delete(student);
-		log.info("student is removed from database :" + student.toString());
-		return true;
-	}
-
-	@PutMapping(path = "/student")
+	@PutMapping(path = "/updateStudent")
 	public Boolean SaveOrUpdateStudent(@RequestBody Student student) {
-		studentRepository.save(student);
-		log.info("Student is updated :" + student.toString());
-		return true;
+		return studentService.SaveOrUpdateStudent(student);
 	}
 }
