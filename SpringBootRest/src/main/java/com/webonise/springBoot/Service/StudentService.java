@@ -19,12 +19,16 @@ public class StudentService {
 	Logger log = (Logger) LoggerFactory.getLogger(StudentService.class);
 
 	public List<Student> getAllStudents() {
+		if (studentRepository.count() == 0) {
+			log.info("No records available...!");
+			throw new RecordsNotAvailableException();
+		}
 		return studentRepository.findAll();
 	}
 
 	public Boolean deleteAllStudents() {
 		if (studentRepository.count() == 0) {
-			log.info("No records found...!");
+			log.info("No records available...!");
 			throw new RecordsNotAvailableException();
 		}
 		studentRepository.deleteAll();
