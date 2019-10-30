@@ -19,6 +19,6 @@ public class StudentExceptionController {
 	
 	@ExceptionHandler(value = RecordsNotAvailableException.class)
 	public ResponseEntity<Object> exception(RecordsNotAvailableException exception){
-		return new ResponseEntity<>("Server response: No records available to remove...!",HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>("Server response: No records available...!",HttpStatus.NOT_FOUND);
 	}
 }
